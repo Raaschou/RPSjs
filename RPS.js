@@ -1,5 +1,5 @@
-function getComputerChoice() {
-    const randomValue = Math.random
+function getRobotChoice() {
+    const randomValue = Math.random()
     return randomValue < 0.33 ? "rock"
     : randomValue < 0.66 ? "paper"
     : "scissors"
@@ -14,45 +14,83 @@ function getHumanChoice(choice) {
     }
 }
 
-function playRound(humanChoice, computerChoice) {
-    console.log(`Human threw ${humanChoice}, computer threw ${computerChoice}`)
-    if (humanChoice === computerChoice) {
-        console.log("No change!")
-    } else if ((humanChoice === "rock" && computerChoice === "scissors") ||
-    (humanChoice === "paper" && computerChoice === "rock") ||
-    (humanChoice === "scissors" && computerChoice === "paper")) {
-        humanScore++
-        console.log("The human won the round!")
-    } else {
-        computerScore++
-        console.log(`The computer won the round!`)
-    }
-    console.log(`The score is now: Human - ${humanScore}, Computer - ${computerScore}`)
-   
-   
+function updateScore() {
     const hScore = document.querySelector("#hScore");
     const rScore = document.querySelector("#rScore");
     
     hScore.textContent = (`Human: ${humanScore}`)
-    rScore.textContent= (`Robot: ${computerScore}`)
+    rScore.textContent = (`Robot: ${robotScore}`)
+}
+
+function updateEmoji(humanChoice, robotChoice) {
+    const hChoiceEmoji = document.querySelector("#hChoice")
+    const rChoiceEmoji = document.querySelector("#rChoice")
+    let hEmoji = ""
+    let rEmoji = ""
+    switch (humanChoice) {
+        case "rock": 
+            hEmoji = "✊" 
+            break;
+        case "paper": 
+            hEmoji = "✋"
+            break;
+        case "scissors": 
+            hEmoji = "✌️"
+            break;
+    }
+
+    switch (robotChoice) {
+        case "rock": 
+            rEmoji = "✊"
+            break;
+        case "paper": 
+            rEmoji = "✋"
+            break;
+        case "scissors": 
+            rEmoji = "✌️"
+            break;
+    }
+
+    hChoiceEmoji.textContent = (hEmoji)
+    rChoiceEmoji.textContent = (rEmoji)
+}
+
+function playRound(humanChoice, robotChoice) {
+    console.log(`Human threw ${humanChoice}, robot threw ${robotChoice}`)
+    if (humanChoice === robotChoice) {
+        console.log("No change!")
+    } else if ((humanChoice === "rock" && robotChoice === "scissors") ||
+    (humanChoice === "paper" && robotChoice === "rock") ||
+    (humanChoice === "scissors" && robotChoice === "paper")) {
+        humanScore++
+        console.log("The human won the round!")
+    } else {
+        robotScore++
+        console.log(`The robot won the round!`)
+    }
+    console.log(`The score is now: Human - ${humanScore}, Robot - ${robotScore}`)
+    
+    
+    updateScore()
+    updateEmoji(humanChoice, robotChoice)
 
 
-    if (humanScore > computerScore && humanScore > 4 ) {
+    if (humanScore > robotScore && humanScore > 4 ) {
         console.log("Human wins!")
-    } else if (computerScore > 4) {
-        console.log("Computer wins!")
+    } else if (robotScore > 4) {
+        console.log("Robot wins!")
     }
 }
 
 let humanScore = 0
-let computerScore = 0 
+let robotScore = 0 
 
 const choices = document.querySelectorAll("button");
 
 choices.forEach((choice) => { 
     choice.addEventListener("click", () => {
-        if (humanScore < 5 && computerScore < 5){
-            playRound(getHumanChoice(choice.id), getComputerChoice())
+        if (humanScore < 5 && robotScore < 5){
+            playRound(getHumanChoice(choice.id), getRobotChoice())
         }
     });   
 })
