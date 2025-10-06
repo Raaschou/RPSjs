@@ -4,15 +4,19 @@ function getComputerChoice() {
     : "scissors"
 }
 
-function getHumanChoice() {
-    choice = prompt("Choose rock, paper, or scissors")
-    return choice.toLowerCase()
+function getHumanChoice(choice) {
+    switch (choice) {
+        case "rock": return "rock"
+        case "paper": return "paper"
+        case "scissors": return "scissors"
+        default: return alert("How did you do this") // Should not happen
+    }
 }
 
 function playRound(humanChoice, computerChoice) {
     console.log(`Human threw ${humanChoice}, computer threw ${computerChoice}`)
     if (humanChoice === computerChoice) {
-        playRound(getHumanChoice(), getComputerChoice())
+        console.log("No change!")
     } else if ((humanChoice === "rock" && computerChoice === "scissors") ||
     (humanChoice === "paper" && computerChoice === "rock") ||
     (humanChoice === "scissors" && computerChoice === "paper")) {
@@ -28,16 +32,18 @@ function playRound(humanChoice, computerChoice) {
 let humanScore = 0
 let computerScore = 0 
 
+const choices = document.querySelectorAll("button");
+    
+    choices.forEach((choice) => { 
+        choice.addEventListener("click", () => {
+        playRound(getHumanChoice(choice.id), getComputerChoice())
+        
 
+    });
+    if (humanScore > computerScore && humanScore > 4 ) {
+        console.log("Human wins!")
+    } else if (computerScore > 4) {
+        console.log("Computer wins!")
+    }
+})
 
-playRound(getHumanChoice(), getComputerChoice())
-playRound(getHumanChoice(), getComputerChoice())
-playRound(getHumanChoice(), getComputerChoice())
-playRound(getHumanChoice(), getComputerChoice())
-playRound(getHumanChoice(), getComputerChoice())
-
-if (humanScore > computerScore) {
-    console.log("Human wins!")
-} else {
-    console.log("Computer wins!")
-}
