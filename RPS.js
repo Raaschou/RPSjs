@@ -56,8 +56,6 @@ function updateEmoji(humanChoice, robotChoice) {
 }
 
 function playRound(humanChoice, robotChoice) {
-    console.log(`Human threw ${humanChoice}, robot threw ${robotChoice}`)
-    
     if ((humanChoice === "rock" && robotChoice === "scissors") ||
     (humanChoice === "paper" && robotChoice === "rock") ||
     (humanChoice === "scissors" && robotChoice === "paper")) {
@@ -71,9 +69,11 @@ function playRound(humanChoice, robotChoice) {
 
 
     if (humanScore > robotScore && humanScore > 4 ) {
-        console.log("Human wins!")
+        const hScore = document.querySelector("#hScore");
+        hScore.textContent = (`Human wins!`)
     } else if (robotScore > 4) {
-        console.log("Robot wins!")
+        const rScore = document.querySelector("#rScore");
+        rScore.textContent = (`Robot wins!`)
     }
 }
 
