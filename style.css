@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    text-align: center;
+    background-color: rgb(44, 44, 44);
+    
+}
+
+.scorecard {
+    display: flex;
+    justify-content: space-evenly;
+    font-family: sans-serif;
+    font-size: x-large;
+    font-weight: 700;
+    color: white;
+}
+
+.showChoice {
+    display: flex;
+    justify-content: space-around;
+    font-size: 100px
+}
+
+
+
+button {
+    border: none;
+    border-radius: 20px;
+    background-color: darkgrey;
+    font-family: sans-serif;
+    font-size: x-large;
+    font-weight: 700;
+    color: white;
+    height: 50px;
+    width: 200px;
+    margin: 10px
+    
+}
+
+button:hover {
+    background-color: grey;
+}
+
+button:active {
+    background-color: darkgrey
+}
