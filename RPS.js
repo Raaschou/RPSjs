@@ -57,20 +57,15 @@ function updateEmoji(humanChoice, robotChoice) {
 
 function playRound(humanChoice, robotChoice) {
     console.log(`Human threw ${humanChoice}, robot threw ${robotChoice}`)
-    if (humanChoice === robotChoice) {
-        console.log("No change!")
-    } else if ((humanChoice === "rock" && robotChoice === "scissors") ||
+    
+    if ((humanChoice === "rock" && robotChoice === "scissors") ||
     (humanChoice === "paper" && robotChoice === "rock") ||
     (humanChoice === "scissors" && robotChoice === "paper")) {
         humanScore++
-        console.log("The human won the round!")
-    } else {
+    } else if (!(humanChoice === robotChoice)) {
         robotScore++
-        console.log(`The robot won the round!`)
     }
-    console.log(`The score is now: Human - ${humanScore}, Robot - ${robotScore}`)
-    
-    
+ 
     updateScore()
     updateEmoji(humanChoice, robotChoice)
 
