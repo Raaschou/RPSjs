@@ -1,6 +1,7 @@
 function getComputerChoice() {
-    return Math.random() < 0.33 ? "rock"
-    : Math.random() < 0.66 ? "paper"
+    const randomValue = Math.random
+    return randomValue < 0.33 ? "rock"
+    : randomValue < 0.66 ? "paper"
     : "scissors"
 }
 
@@ -27,23 +28,35 @@ function playRound(humanChoice, computerChoice) {
         console.log(`The computer won the round!`)
     }
     console.log(`The score is now: Human - ${humanScore}, Computer - ${computerScore}`)
+   
+   
+    const hScore = document.querySelector("#hScore");
+    const rScore = document.querySelector("#rScore");
+    
+    hScore.textContent = (`Human: ${humanScore}`)
+    rScore.textContent= (`Robot: ${computerScore}`)
+
+
+    if (humanScore > computerScore && humanScore > 4 ) {
+        console.log("Human wins!")
+    } else if (computerScore > 4) {
+        console.log("Computer wins!")
+    }
 }
 
 let humanScore = 0
 let computerScore = 0 
 
 const choices = document.querySelectorAll("button");
-    
-    choices.forEach((choice) => { 
-        choice.addEventListener("click", () => {
-        playRound(getHumanChoice(choice.id), getComputerChoice())
-        
 
-    });
-    if (humanScore > computerScore && humanScore > 4 ) {
-        console.log("Human wins!")
-    } else if (computerScore > 4) {
-        console.log("Computer wins!")
-    }
+choices.forEach((choice) => { 
+    choice.addEventListener("click", () => {
+        if (humanScore < 5 && computerScore < 5){
+            playRound(getHumanChoice(choice.id), getComputerChoice())
+        }
+    });   
 })
+
+
+
 
